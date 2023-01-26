@@ -15,4 +15,8 @@ sprite[3] = sPlayerDown;
 
 sprite_index = sprite[face];
 
+
+shootTimer = 0;
+shootCooldown = 8;
 bulletObj = oBullet;
+weaponLength = sprite_get_bbox_right(sGun) - (sprite_xoffset + 10);

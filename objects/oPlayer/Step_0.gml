@@ -36,8 +36,13 @@ if xSpd == 0 && ySpd == 0 image_index = 0;
 
 sprite_index = sprite[face];
 
-if shootKey {
-	var _bulletInst = instance_create_depth(x, centerY, depth-100, bulletObj);
+if shootTimer > 0 shootTimer--;
+if shootKey && shootTimer <= 0 {
+	audio_play_sound(sndGunShoot, 5, false, 0.5);
+	shootTimer = shootCooldown;
+	var _xOffset = lengthdir_x(weaponLength + weaponOffsetDist, aimDir);
+	var _yOffset = lengthdir_y(weaponLength + weaponOffsetDist, aimDir);
+	var _bulletInst = instance_create_depth(x + _xOffset, centerY + _yOffset, depth-100, bulletObj);
 	with (_bulletInst) {
 		var _yScale = 1;
 		dir = other.aimDir;
